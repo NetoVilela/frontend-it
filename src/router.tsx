@@ -21,6 +21,7 @@ const Crypto = Loader(lazy(() => import('src/pages/Dashboards/Crypto')));
 const Login = Loader(lazy(() => import('src/pages/Login')));
 const UsersForm = Loader(lazy(() => import('src/pages/Users/Form')));
 const UsersList = Loader(lazy(() => import('src/pages/Users/List')));
+const MoviesList = Loader(lazy(() => import('src/pages/Movies/List')));
 
 // Status
 
@@ -108,6 +109,19 @@ const routes: RouteObject[] = [
         element:
           <ProtectedRoute>
             <UsersList />
+          </ProtectedRoute>
+      },
+    ]
+  },
+  {
+    path: 'movies',
+    element: <SidebarLayout />,
+    children: [
+      {
+        path: 'list',
+        element:
+          <ProtectedRoute>
+            <MoviesList />
           </ProtectedRoute>
       },
     ]

@@ -25,9 +25,10 @@ interface ILayoutDefault {
   title: string;
   subtitle?: string;
   children: React.ReactNode;
+  cardContent?: boolean;
 }
 
-function LayoutDefault({ title, subtitle, children }: ILayoutDefault) {
+function LayoutDefault({ title, subtitle, children, cardContent = true }: ILayoutDefault) {
 
   return (
     <>
@@ -61,11 +62,19 @@ function LayoutDefault({ title, subtitle, children }: ILayoutDefault) {
           <Grid item xs={12} mt={0} padding={3}>
             <Card>
               <Divider />
-              <CardContent>
-                <Grid item xs={12}>
-                  {children}
-                </Grid>
-              </CardContent>
+              {
+                cardContent ?
+                  <CardContent>
+                    <Grid item xs={12}>
+                      {children}
+                    </Grid>
+                  </CardContent>
+                  :
+                  <Grid item xs={12}>
+                    {children}
+                  </Grid>
+              }
+
             </Card>
           </Grid>
         </Grid>

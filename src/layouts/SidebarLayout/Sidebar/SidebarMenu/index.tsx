@@ -132,9 +132,9 @@ const SubMenuWrapper = styled(Box)(
                 background: ${theme.colors.alpha.trueWhite[100]};
                 opacity: 0;
                 transition: ${theme.transitions.create([
-                  'transform',
-                  'opacity'
-                ])};
+    'transform',
+    'opacity'
+  ])};
                 width: 6px;
                 height: 6px;
                 transform: scale(0);
@@ -165,7 +165,7 @@ function SidebarMenu() {
   return (
     <>
       <MenuWrapper>
-      <List
+        <List
           component="div"
           subheader={
             <ListSubheader component="div" disableSticky>
@@ -189,6 +189,7 @@ function SidebarMenu() {
             </List>
           </SubMenuWrapper>
         </List>
+
         <List
           component="div"
           subheader={
@@ -219,6 +220,31 @@ function SidebarMenu() {
                   startIcon={<ClearAllIcon />}
                 >
                   Listar usuário
+                </Button>
+              </ListItem>
+            </List>
+          </SubMenuWrapper>
+        </List>
+
+        <List
+          component="div"
+          subheader={
+            <ListSubheader component="div" disableSticky>
+              Filmes
+            </ListSubheader>
+          }
+        >
+          <SubMenuWrapper>
+            <List component="div">
+              <ListItem component="div">
+                <Button
+                  disableRipple
+                  component={RouterLink}
+                  onClick={closeSidebar}
+                  to="/movies/list"
+                  startIcon={<ClearAllIcon />}
+                >
+                  Listar filmes
                 </Button>
               </ListItem>
             </List>

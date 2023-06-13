@@ -1,3 +1,6 @@
+// Libs
+import moment from 'moment';
+
 // Components
 import {
   Avatar,
@@ -40,6 +43,8 @@ interface IUser {
   avatarSrc: string;
 }
 
+const a_profiles: string[] = ['', 'Administrador', 'Colaborador'];
+
 const UsersList = () => {
   const theme = useTheme();
   const [users, setUsers] = useState<IUser[]>([]);
@@ -62,6 +67,7 @@ const UsersList = () => {
       <LayoutDefault
         title="Listar usuários"
         subtitle=""
+        cardContent={false}
       >
         <TableContainer component={Paper}>
           <Table>
@@ -70,9 +76,10 @@ const UsersList = () => {
                 <TableCell>Nome</TableCell>
                 <TableCell>Email</TableCell>
                 <TableCell>CPF</TableCell>
-                <TableCell>PERFIL</TableCell>
+                <TableCell>Perfil</TableCell>
+                <TableCell>Criado em</TableCell>
                 <TableCell>Status</TableCell>
-                <TableCell></TableCell>
+                {/* <TableCell></TableCell> */}
               </TableRow>
             </StyledTableHead>
             <TableBody>
@@ -84,17 +91,19 @@ const UsersList = () => {
                         <Avatar alt={`${user.name}`} src={`${process.env.REACT_APP_API_BASE_URL}/attachments/users/${user.avatarSrc}`} />
                         <Typography marginLeft="5px">{user.name}</Typography>
                       </Grid>
-                      <Grid>
-                        <Typography variant="subtitle2">
-                          {user.createdAt}
-                        </Typography>
-                      </Grid>
                     </TableCell>
                     <TableCell>{user.email}</TableCell>
                     <TableCell>{user.cpf}</TableCell>
-                    <TableCell>{user.profile}</TableCell>
-                    <TableCell>{user.status ? "Ativo" : "Inativo"}</TableCell>
+                    <TableCell>{a_profiles[user.profile]}</TableCell>
                     <TableCell>
+                      <Grid>
+                        <Typography variant="subtitle2">
+                          {`${moment(user.createdAt).format('DD/MM/YYYY')} às ${moment(user.createdAt).format('HH:mm:ss')}`}
+                        </Typography>
+                      </Grid>
+                    </TableCell>
+                    <TableCell>{user.status ? "Ativo" : "Inativo"}</TableCell>
+                    {/* <TableCell>
                       <Tooltip title="Edit Order" arrow>
                         <IconButton
                           sx={{
@@ -121,7 +130,7 @@ const UsersList = () => {
                           <DeleteOutlineIcon fontSize="small" />
                         </IconButton>
                       </Tooltip>
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 )
               })}
